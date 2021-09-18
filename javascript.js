@@ -19,7 +19,6 @@ if (user == "solaito") {
  // Check if team has been submitted by the opponent
  function fetchMatch(player) {
   fetchMatchJson(player).then(function (response) {
-   console.log("fetchMatchJson");
    if (response.team == null) {
     setTimeout(function () { fetchMatch(player) }, 5000); // Recheck every 5 seconds
    } else {
