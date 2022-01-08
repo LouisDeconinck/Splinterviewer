@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Splinterviewer API Documentation</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+  <link rel="stylesheet" href="stylesheet.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/jpg" href="iconmonstr-eye-6.svg" />
+</head>
+
+<body>
+  <a href="https://splinterviewer.com">
+    <h1>Splinterviewer</h1>
+  </a>
+  <img src="venari.png" alt="Venari Wavesmith" />
+  <h2>Unofficial Splinterlands API Documentation</h2>
+  <p>Last updated: 4 October 2021</p>
+  <p>As there does not exist official documentation for the Splinterlands API, I've bundled all available information
+    here. This should help you get started with your own Splinterlands projects.</p>
+  <p>Help keep this information up to date and consider donating if it has helped you. You can send DEC, SPS, SPT, Hive,
+    HBD,
+    or cards to @solaito. You can also use the buttons at the bottom of the page to securely donate
+    through <a href="https://hive-keychain.com/" target="_blank">Hive Keychain</a>.</p>
+  <h3>Table of contents</h3>
+  <ul>
+    <li><a href="#general">General</a></li>
+    <li><a href="#cards">Cards</a></li>
+    <li><a href="#gameplay">Gameplay</a></li>
+    <li><a href="#player">Player</a></li>
+    <li><a href="#market">Market</a></li>
+    <li><a href="#guilds">Guilds</a></li>
+    <li><a href="#tournaments">Tournaments</a></li>
+  </ul>
+  <h3 id="general">General</h3>
+  <h4>Game settings</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/settings"
+      target="_blank">https://api2.splinterlands.com/settings</a></p>
+  <p>Contains information about: DEC price, start pack price, rulesets, leagues, DEC burn rate, DEC bonus earnings,
+    guilds, supported currencies, quests, lands, potions and SPS.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      rpc_nodes [5]<br />
+      asset_url : https://d36mxiodymuqjm.cloudfront.net/<br />
+      dec_price : 0.0102725<br />
+      starter_pack_price : 10<br />
+      booster_pack_price : 2<br />
+      market_fee : 500<br />
+      maintenance_mode : false<br />
+      num_editions : 6<br />
+      core_editions [3]<br />
+      starter_editions [2]<br />
+      soulbound_editions [1]<br />
+      event_creation_whitelist [6]<br />
+      bat_event_list [3]<br />
+      event_entry_fee_required : 1<br />
+      max_event_entrants : 1000<br />
+      account : steemmonsters<br />
+      stats : true<br />
+      rarity_pcts [4]<br />
+      xp_levels [4]<br />
+      alpha_xp [4]<br />
+      gold_xp [4]<br />
+      beta_xp [4]<br />
+      beta_gold_xp [4]<br />
+      combine_rates [4]<br />
+      combine_rates_gold [4]<br />
+      battles {5}<br />
+      multi_lb_start_season : 47<br />
+      leaderboard_prizes {6}<br />
+      leagues [16]<br />
+      dec {27}<br />
+      guilds {20}<br />
+      barracks_perks [10]<br />
+      frays [5]<br />
+      supported_currencies [35]<br />
+      season {5}<br />
+      brawl_cycle {6}<br />
+      quests [10]<br />
+      guild_store_items [4]<br />
+      transfer_cooldown_blocks : 28800<br />
+      last_block : 57938017<br />
+      timestamp : 1633191937513<br />
+      untamed_edition_date : 2019-11-30T17:00:00.000Z<br />
+      active_auth_ops [16]<br />
+      version : 0.7.139<br />
+      land_sale {8}<br />
+      potions [4]<br />
+      chain_props {4}<br />
+      promotions [1]<br />
+      sps {5}<br />
+      circle_payments_enabled : 0<br />
+      paypal_acct : matt@steemmonsters.com<br />
+      paypal_merchant_id : V5UX5DWTG5PCC<br />
+      paypal_client_id : AY8dGLagvS7Svf4Nr3b4Uxu7RSzxJI-6XHe7tIUUrZ8R4pwsaRNdRARaT3xKaXw5wB2XIH214jfeGzTN<br />
+      paypal_sandbox : false<br />
+      ssc {7}<br />
+      card_holding_accounts [1]<br />
+      ethereum {1}<br />
+      wax {4}<br />
+      sps_airdrop {3}<br />
+      api_ops [6]
+      </ul>
+    </samp>
+  </details>
+  <h4>Transaction lookup</h4>
+  <p>API endpoint: <a
+      href="https://api2.splinterlands.com/transactions/lookup?trx_id=09c8ac9db08d246696fa795cbf03ff07b83303e6"
+      target="_blank">https://api2.splinterlands.com/transactions/lookup?trx_id=09c8ac9db08d246696fa795cbf03ff07b83303e6</a>
+  </p>
+  <p>A transaction ID must be provided. A transaction ID can be found through <a
+      href="https://www.hiveblockexplorer.com/" target="_blank">Hive Block Explorer</a>. Contains information about:
+    block
+    ID, previous block ID, transaction type, player, date and result.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 09c8ac9db08d246696fa795cbf03ff07b83303e6<br />
+      block_id : 0242021dc93ce1ccca2794d7b58bf2e8c431465c<br />
+      prev_block_id : 0242021c1db4e5e4c31b7d5ff819352194e7d400<br />
+      type : sm_start_quest<br />
+      player : buffnecked-ibis<br />
+      data : {\"type\":\"daily\"}<br />
+      success : true<br />
+      error : null<br />
+      block_num : 37880349<br />
+      created_date : 2019-11-04T12:46:55.560Z<br />
+      result :
+      {\"id\":\"09c8ac9db08d246696fa795cbf03ff07b83303e6\",\"player\":\"buffnecked-ibis\",\"created_date\":\"2019-11-04T12:46:55.558Z\",\"created_block\":37880349,\"name\":\"Rising
+      Dead\",\"total_items\":5,\"completed_items\":0,\"claim_trx_id\":null,\"claim_date\":null,\"reward_qty\":3,\"refresh_trx_id\":null}<br />
+      steem_price : 0.149986<br />
+      sbd_price : 0.717364
+    </samp>
+  </details>
+  <h4>Transaction history</h4>
+  <p>API endpoint: <a href="https://api.splinterlands.io/transactions/history?from_block=37904629"
+      target="_blank">https://api.splinterlands.io/transactions/history?from_block=37904629</a>
+  </p>
+  <p>A block ID needs to be provided. Gets 1,000 Splinterlands transactions starting from the target block. Contains
+    information about: block ID, previous block ID, transaction type, player, date and result.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 09c8ac9db08d246696fa795cbf03ff07b83303e6<br />
+      block_id : 0242021dc93ce1ccca2794d7b58bf2e8c431465c<br />
+      prev_block_id : 0242021c1db4e5e4c31b7d5ff819352194e7d400<br />
+      type : sm_start_quest<br />
+      player : buffnecked-ibis<br />
+      data : {\"type\":\"daily\"}<br />
+      success : true<br />
+      error : null<br />
+      block_num : 37880349<br />
+      created_date : 2019-11-04T12:46:55.560Z<br />
+      result :
+      {\"id\":\"09c8ac9db08d246696fa795cbf03ff07b83303e6\",\"player\":\"buffnecked-ibis\",\"created_date\":\"2019-11-04T12:46:55.558Z\",\"created_block\":37880349,\"name\":\"Rising
+      Dead\",\"total_items\":5,\"completed_items\":0,\"claim_trx_id\":null,\"claim_date\":null,\"reward_qty\":3,\"refresh_trx_id\":null}<br />
+      steem_price : 0.149986<br />
+      sbd_price : 0.717364
+    </samp>
+  </details>
+  <h4>Item details</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/item_details"
+      target="_blank">https://api2.splinterlands.com/players/item_details</a>
+  </p>
+  <p>Provides information about the different items in the game.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 1<br />
+      name : The Untamed<br />
+      type : Title<br />
+      sub_type : null<br />
+      data : null<br />
+      transferable : true<br />
+      consumable : false<br />
+      print_limit : null<br />
+      total_printed : 72<br />
+      image_filename : icon_title.svg<br />
+      rarity : null
+    </samp>
+  </details>
+  </details>
+  <h4>DEC Hive conversion</h4>
+  <p>API endpoint: <a href="https://token-converter.privex.io/conversion_rate?dec=1000"
+      target="_blank">https://token-converter.privex.io/conversion_rate?dec=1000</a>
+  </p>
+  <p>An amount of DEC needs to be specified. The amount of DEC gets converted in Hive.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      hive : 15.594<br />
+      dec : 1000
+    </samp>
+  </details>
+  <h4>FAQ</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/faq/en"
+      target="_blank">https://api2.splinterlands.com/players/faq/en</a>
+  </p>
+  <p>An language needs to be specified like <code>en</code> or <code>fr</code>. Provides the FAQ.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      0 {2}<br />
+      section : General<br />
+      items [6]<br />
+      0 {2}<br />
+      q : What is ${game_name}?<br />
+      a : ${game_name} is a digital, collectible card game built on blockchain technology. It is similar in concept to
+      games
+      like Magic the Gathering and Hearthstone where you build up a collection of cards, which all have various
+      different
+      stats and abilities, and use them to battle other players in skill-based matches. By using blockchain technology,
+      players can buy, sell, and trade their digital assets freely just as if they were physical cards, and all
+      transactions
+      are recorded publicly and immutably.
+    </samp>
+  </details>
+  <h4>Daily announcement</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/daily_updates"
+      target="_blank">https://api2.splinterlands.com/players/daily_updates</a>
+  </p>
+  <p>Returns the daily announcements and tips.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      enabled : true<br />
+      announcement {4}<br />
+      content : Find out more about the upcoming Chaos Legion edition and the full details about the presale! Click here
+      to
+      find out more.<br />
+      title : Chaos Legion Set & Presale Info!<br />
+      date : 2021-09-24T00:00:00.000Z<br />
+      url : https://peakd.com/splinterlands/@splinterlands/chaos-legion-set-and-presale-info<br />
+      <br />
+      did_you_know [2]<br />
+      0 {3}<br />
+      title : DID YOU KNOW?<br />
+      content : You can rent out your unused cards to earn a passive income, or rent cards you need from other players
+      at
+      Peakmonsters! VISIT PEAKMONSTERS.COM.<br />
+      url : https://peakmonsters.com/market
+    </samp>
+  </details>
+  <h4>Check promo code</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/purchases/check_code?code=K5XF-7N1N"
+      target="_blank">https://api2.splinterlands.com/purchases/check_code?code=K5XF-7N1N</a>
+  </p>
+  <p>A promo code must be specified. Checks if a promo code has been used.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      valid : false<br />
+      error : Promo code: [K5XF-7N1N] has already been used.
+    </samp>
+  </details>
+  <h4>Currency transfer</h4>
+  <code>{"token":"SPS","qty":300,"to":"sl-hive","memo":"smitop","app":"splinterlands/0.7.139","n":"CaVA9uX3DF"}</code>
+  <p>This is the format needed when sending a currency transfer. The <code>n</code> value is a random number used to
+    check for duplicate transactions, you can just omit it.</p>
+  <h3 id="cards">Cards</h3>
+  <h4>Global card stats</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/cards/stats"
+      target="_blank">https://api2.splinterlands.com/cards/stats</a>
+  </p>
+  <p>Provides information on all cards in Splinterlands. Contains information about: card ID, edition, number of cards
+    and amount of burned cards.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      card_detail_id : 1<br />
+      gold : false<br />
+      edition : 0<br />
+      num_cards : 6934<br />
+      total_xp : 890200<br />
+      num_burned : 209<br />
+      total_burned_xp : 22100
+    </samp>
+  </details>
+  <h4>Card details</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/cards/get_details"
+      target="_blank">https://api2.splinterlands.com/cards/get_details</a>
+  </p>
+  <p>Provides more detailed information on all cards in Splinterlands. Contains information about: card ID, name, color,
+    stats, type and drop rate.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 1<br />
+      name : Goblin Shaman<br />
+      color : Red<br />
+      type : Monster<br />
+      sub_type : null<br />
+      rarity : 1<br />
+      drop_rate : 80<br />
+      stats {8}<br />
+      is_starter : false<br />
+      editions : 0,1<br />
+      created_block_num : null<br />
+      last_update_tx : null<br />
+      total_printed : 183490<br />
+      is_promo : false<br />
+      tier : null<br />
+      distribution [4]
+    </samp>
+  </details>
+  <h4>Card lookup</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/cards/find?ids=G3-250-4FDC3NVMTC"
+      target="_blank">https://api2.splinterlands.com/cards/find?ids=G3-250-4FDC3NVMTC</a>
+  </p>
+  <p>A card ID must be specified that identifies one specific card, like "G3-250-4FDC3NVMTC". The "250" refers to the
+    general card detail ID. Starter cards can not be looked up this way. Contains information about: player, card detail
+    ID, xp, gold, edition, market listing, delegation and unlock date. Also contains the same information that can be
+    found
+    through Card Details.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      player : solaito<br />
+      uid : G3-250-4FDC3NVMTC<br />
+      card_detail_id : 250<br />
+      xp : 1<br />
+      gold : true<br />
+      edition : 3<br />
+      market_id : c96686691d302fdbb20b7288d286d021496cf329-0<br />
+      buy_price : 59.990<br />
+      market_listing_type : SELL<br />
+      market_listing_status : 0<br />
+      last_used_block : 57962601<br />
+      last_used_player : eclipsi<br />
+      last_used_date : 2021-10-03T12:57:16.940Z<br />
+      last_transferred_block : 57963044<br />
+      last_transferred_date : 2021-10-03T13:19:18.000Z<br />
+      alpha_xp : null<br />
+      delegated_to : null<br />
+      delegation_tx : 623dae2f40b632a093cd390b8936fe29dd1b3a3a<br />
+      skin : null<br />
+      delegated_to_display_name : null<br />
+      display_name : null<br />
+      lock_days : null<br />
+      unlock_date : null<br />
+      details {16}
+    </samp>
+  </details>
+  <h4>Player collection</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/cards/collection/solaito"
+      target="_blank">https://api2.splinterlands.com/cards/collection/solaito</a></p>
+  <p>A player name must be specified. Lists out every card a player owns. Contains same data that can be found through
+    Card lookup.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      player : solaito<br />
+      cards [2]<br />
+      <br />
+      0 {24}<br />
+      player : solaito<br />
+      uid : C3-334-92ILN8WROG<br />
+      card_detail_id : 334<br />
+      xp : 1<br />
+      gold : false<br />
+      edition : 3<br />
+      market_id : 5325ecb2d6e13a2860c6fe0d3c56acf51f0d5df8-0<br />
+      buy_price : 0.140<br />
+      market_listing_type : SELL<br />
+      market_listing_status : 0<br />
+      last_used_block : null<br />
+      last_used_player : null<br />
+      last_used_date : null<br />
+      last_transferred_block : null<br />
+      last_transferred_date : null<br />
+      alpha_xp : null<br />
+      delegated_to : null<br />
+      delegation_tx : null<br />
+      skin : null<br />
+      delegated_to_display_name : null<br />
+      display_name : null<br />
+      lock_days : null<br />
+      unlock_date : null<br />
+      level : 1
+    </samp>
+  </details>
+  <h3 id="gameplay">Gameplay</h3>
+  <h4>Current season leaderboard</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/leaderboard"
+      target="_blank">https://api2.splinterlands.com/players/leaderboard</a>
+  </p>
+  <p>Retrieves data on the top 100 highest ranked Splinterlands players. Contains information about: rank, season,
+    player, rating, battles, wins, win streak, max rating, league, guild, avatar and title.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      rank : 1<br />
+      season : 72<br />
+      player : zanjikizan<br />
+      rating : 1903<br />
+      battles : 258<br />
+      wins : 226<br />
+      longest_streak : 27<br />
+      max_rating : 1925<br />
+      league : 3<br />
+      max_league : 3<br />
+      leaderboard : 0<br />
+      reward_claim_tx : null<br />
+      guild_id : 6982697407f19d166030e6f6479aa71d5b14b8ed<br />
+      guild_name : The Cobras<br />
+      guild_data : {\"crest\":{\"banner\":\"silver\",\"decal\":\"tree\"}}<br />
+      avatar_id : 18<br />
+      display_name : null<br />
+      title_pre : null<br />
+      title_post : null
+    </samp>
+  </details>
+  <h4>Player battles</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/battle/history?player=solaito"
+      target="_blank">https://api2.splinterlands.com/battle/history?player=solaito</a></p>
+  <p>A player name must be specified. Retrieves data on the last 50 battles played by a player. Contains information
+    about: player, opponent, battle actions, date, type, mana cap, ruleset and DEC info.</p>
+  <details>
+    <summary>Example response for API endpoint 1</summary>
+    <samp>
+      battle_queue_id_1 : sl_e246d4d45898b36dcdadece0f4a94c17<br />
+      battle_queue_id_2 : sl_73238c2366f9302a824451cb7b3f089d<br />
+      player_1_rating_initial : 140<br />
+      player_2_rating_initial : 140<br />
+      winner : solaito<br />
+      player_1_rating_final : 120<br />
+      player_2_rating_final : 160<br />
+      details : \"seed\":\"ccce979617391941d523c286ea06c9ea\",\"rounds\":[{\"num\":1,\"actions\":[{\"type\":\"ranged
+      attack\",\"result\":\"hit\",\"hit_chance\":1,\"hit_val\":0.7563104761221712,\"initiator\":\"starter-161-a5n2R\",\"target\":\"starter-8-hH8IL\",\"damage\":2,\"state\":{\"alive\":true,\"stats\":[3,0,0,0,3,3],\"base_health\":5,\"other\":[]}
+      ...<br />
+      player_1 : lubolatao<br />
+      player_2 : solaito<br />
+      created_date : 2021-10-01T22:44:33.058Z<br />
+      match_type : Ranked<br />
+      mana_cap : 14<br />
+      current_streak : 1<br />
+      ruleset : Standard<br />
+      inactive :<br />
+      settings : {\"rating_level\":1}<br />
+      block_num : 57916840<br />
+      rshares : 24614<br />
+      dec_info :
+      {\"rshares\":24614,\"capture_rate\":9614.891314133334,\"reward\":0.299,\"bonuses\":{\"streak\":{\"wins\":0,\"bonus\":0},\"gold\":{\"cards\":0,\"bonus\":0},\"alpha\":{\"cards\":0,\"bonus\":0},\"guild\":{\"level\":0,\"bonus\":0}}}<br />
+      leaderboard : 0
+    </samp>
+  </details>
+  <p>API endpoint 2: <a href="https://api2.splinterlands.com/battle/history2?player=solaito"
+      target="_blank">https://api2.splinterlands.com/battle/history2?player=solaito</a></p>
+  <p>A player name must be specified. Retrieves data on the last 20 battles played by a player instead of the last 50
+    battles. The data is better structured than the other API endpoints and also has more details on the players which
+    are playing.</p>
+  <details>
+    <summary>Example response for API endpoint 2</summary>
+    <samp>
+      battle_queue_id_1 : sl_e246d4d45898b36dcdadece0f4a94c17<br />
+      battle_queue_id_2 : sl_73238c2366f9302a824451cb7b3f089d<br />
+      player_1_rating_initial : 140<br />
+      player_2_rating_initial : 140<br />
+      winner : solaito<br />
+      player_1_rating_final : 120<br />
+      player_2_rating_final : 160<br />
+      details {5}<br />
+      player_1 : lubolatao<br />
+      player_2 : solaito<br />
+      created_date : 2021-10-01T22:44:33.058Z<br />
+      match_type : Ranked<br />
+      mana_cap : 14<br />
+      current_streak : 1<br />
+      ruleset : Standard<br />
+      inactive :<br />
+      settings : {\"rating_level\":1}<br />
+      block_num : 57916840<br />
+      rshares : 24614<br />
+      dec_info :
+      {\"rshares\":24614,\"capture_rate\":9614.891314133334,\"reward\":0.299,\"bonuses\":{\"streak\":{\"wins\":0,\"bonus\":0},\"gold\":{\"cards\":0,\"bonus\":0},\"alpha\":{\"cards\":0,\"bonus\":0},\"guild\":{\"level\":0,\"bonus\":0}}}<br />
+      leaderboard : 0<br />
+      player_1_data {28}<br />
+      player_2_data {28}
+    </samp>
+  </details>
+  <p>API endpoint 3: <a href="https://api.steemmonsters.io/players/history?username=solaito"
+      target="_blank">https://api.steemmonsters.io/players/history?username=solaito</a></p>
+  <p>A player name must be specified. Retrieves data on all battles played by a player during the last 30 days.
+    Additional parameters can be added to the url such as the type of battles <code>&types=sm_battle,battle</code> or
+    a
+    parameter to limit the maximum amount of battles being fetched <code>&limit=1000</code>.</p>
+  <details>
+    <summary>Example response for API endpoint 3</summary>
+    <samp>
+      id : 84bae0af7a6667ac8fd7b28712c3aedcbbd70bc1<br />
+      block_id : 037424e2821612de8f791879e69c4df864be7abd<br />
+      prev_block_id : 037424e170dc43ccd29a2addb0838f8b192e5686<br />
+      type : token_transfer<br />
+      player : solaito<br />
+      affected_player : solaito<br />
+      data :
+      {\"token\":\"SPS\",\"qty\":13.512,\"to\":\"sl-hive\",\"memo\":\"solaito\",\"app\":\"splinterlands/0.7.139\",\"n\":\"62olRh03Jf\"}<br />
+      success : true<br />
+      error : null<br />
+      block_num : 57943266<br />
+      created_date : 2021-10-02T20:48:33.000Z<br />
+      result :
+      {\"success\":true,\"from\":\"solaito\",\"to\":\"sl-hive\",\"amount\":13.512,\"token\":\"SPS\",\"from_start_balance\":13.512,\"from_end_balance\":0,\"to_start_balance\":6401876.981,\"to_end_balance\":6401890.493,\"block_num\":57943266,\"trx_id\":\"84bae0af7a6667ac8fd7b28712c3aedcbbd70bc1\",\"type\":\"token_transfer\",\"created_date\":\"2021-10-02T20:48:33.000Z\"}<br />
+      steem_price : null<br />
+      sbd_price : null
+    </samp>
+  </details>
+  <h4>Ongoing player match</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/outstanding_match?username=solaito"
+      target="_blank">https://api2.splinterlands.com/players/outstanding_match?username=solaito</a>
+  </p>
+  <p>A player name must be specified. Retrieves data about a match that is currently being played. Once both players
+    have locked in their cards a battle is resolved and no longer exists. It is no longer possible to view the team a
+    player has submitted. The team_hash key will received a value, once the player has locked in his cards. Contains
+    information about: date, player, match type, mana cap, opponent, ruleset and recent opponents.</p>
+  <details>
+    <summary>Example response when battle is found</summary>
+    <samp>
+      id : sl_e8f5fbb9410571f12cd97e4cbad54a61<br />
+      created_block_num : 57412636<br />
+      expiration_block_num : 57412696<br />
+      player : solaito<br />
+      team_hash : null<br />
+      match_type : Ranked<br />
+      mana_cap : 27<br />
+      opponent : sl_947bc630eafb2586821e715713e0bb29<br />
+      match_block_num : 57412637<br />
+      status : 1<br />
+      reveal_tx : null<br />
+      reveal_block_id : null<br />
+      team : null<br />
+      summoner_level : null<br />
+      ruleset : Standard<br />
+      inactive :<br />
+      opponent_player : lreijgl55<br />
+      opponent_team_hash : null<br />
+      submit_expiration_block_num : 57412703<br />
+      settings : {\"rating_level\":1}<br />
+      app : null<br />
+      created_date : 2021-09-14T09:30:11.145Z<br />
+      expiration_date : 2021-09-14T09:33:11.145Z<br />
+      match_date : 2021-09-14T09:30:09.000Z<br />
+      submit_expiration_date : 2021-09-14T09:33:27.000Z<br />
+      recent_opponents :
+      [\"duong170\",\"pengeayuda\",\"jkojkojki\",\"lazuli0107\",\"joyouscabbage\",\"sule68\",\"sabanes28\",\"yk8yn9clrm\",\"lelanbenson74\",\"tanis0rn\"]<br />
+      is_critical : true
+    </samp>
+  </details>
+  <details>
+    <summary>Example response when no battle is found</summary>
+    <samp>
+      null
+    </samp>
+  </details>
+  <h3 id="player">Player</h3>
+  <h4>Player balances</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/balances?username=solaito"
+      target="_blank">https://api2.splinterlands.com/players/balances?username=solaito</a>
+  </p>
+  <p>A player name must be specified. Lists out the currencies owned by a player. Contains data about: SPS, DEC,
+    credits, potions and ECR.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      0 {3}<br />
+      player : solaito<br />
+      token : SPS<br />
+      balance : 0<br />
+      1 {3}<br />
+      player : solaito<br />
+      token : DEC<br />
+      balance : 9109.134<br />
+      2 {3}<br />
+      player : solaito<br />
+      token : CREDITS<br />
+      balance : 2796.269<br />
+      3 {3}<br />
+      player : solaito<br />
+      token : GOLD<br />
+      balance : 10<br />
+      4 {3}<br />
+      player : solaito<br />
+      token : LEGENDARY<br />
+      balance : 12<br />
+      5 {3}<br />
+      player : solaito<br />
+      token : QUEST<br />
+      balance : 0<br />
+      6 {5}<br />
+      player : solaito<br />
+      token : ECR<br />
+      balance : 9519<br />
+      last_reward_block : 57916840<br />
+      last_reward_time : 2021-10-01T22:44:33.058Z
+    </samp>
+  </details>
+  <h4>General player settings</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/details?name=solaito"
+      target="_blank">https://api2.splinterlands.com/players/details?name=solaito</a>
+  </p>
+  <p>A player name must be specified. Lists out details about a specific player. Contains data about: rating, battles,
+    wins, winstreak, max rating, max rank, guild, avatar, title, collection power and league.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      name : solaito<br />
+      join_date : 2021-08-25T17:01:53.361Z<br />
+      rating : 160<br />
+      battles : 688<br />
+      wins : 395<br />
+      current_streak : 1<br />
+      longest_streak : 15<br />
+      max_rating : 1910<br />
+      max_rank : 3393<br />
+      champion_points : 0<br />
+      capture_rate : 9519<br />
+      last_reward_block : 57916840<br />
+      guild : null<br />
+      starter_pack_purchase : true<br />
+      avatar_id : 6<br />
+      display_name : null<br />
+      title_pre : null<br />
+      title_post : null<br />
+      collection_power : 10<br />
+      league : 1<br />
+      adv_msg_sent : false<br />
+      season_details {0}
+    </samp>
+  </details>
+  <h4>Player quest</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/quests?username=solaito"
+      target="_blank">https://api2.splinterlands.com/players/quests?username=solaito</a>
+  </p>
+  <p>A player name must be specified. Lists out details about the current quest of a player. Contains data about:
+    player, date, quest, progress, claimed, rewards and league.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : da6d9133bd59b2a5f79fa21edbfb3b31d9d07b5a<br />
+      player : solaito<br />
+      created_date : 2021-10-02T09:23:39.000Z<br />
+      created_block : 57929599<br />
+      name : Stir the Volcano<br />
+      total_items : 5<br />
+      completed_items : 0<br />
+      claim_trx_id : null<br />
+      claim_date : null<br />
+      reward_qty : 1<br />
+      refresh_trx_id : null<br />
+      rewards : null<br />
+      league : 1
+    </samp>
+  </details>
+  <h4>Player referrals</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/referrals?username=solaito"
+      target="_blank">https://api2.splinterlands.com/players/referrals?username=solaito</a>
+  </p>
+  <p>A player name must be specified. Lists out all refered players and the purchases they have made. Contains data
+    about: name, date, rating, battles, avatar, title, league, purchase, type, payment and amount.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      referrals [31]<br />
+      0 {10}<br />
+      name : iannispar<br />
+      join_date : 2021-10-03T06:34:45.537Z<br />
+      starter_pack_purchase : true<br />
+      rating : 75<br />
+      battles : 15<br />
+      avatar_id : 0<br />
+      display_name : null<br />
+      title_pre : null<br />
+      title_post : null<br />
+      league : 0<br />
+      <br />
+      purchases [10]<br />
+      0 {11}<br />
+      purchase_tx_id : P-XVPO9DG300<br />
+      purchase_id : P-XVPO9DG300<br />
+      purchase_type : starter_pack<br />
+      affiliate : solaito<br />
+      purchaser : disciple_516622<br />
+      created_date : 2021-10-03T08:12:39.309Z<br />
+      type : affiliate<br />
+      purchase_payment : undefined undefined<br />
+      affiliate_payment : 500 CREDITS<br />
+      purchase_amount_usd : 10.00<br />
+      player_data {28}
+    </samp>
+  </details>
+  <h4>Card packs purchased</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/pack_purchases?edition=5&username=solaito"
+      target="_blank">https://api2.splinterlands.com/players/pack_purchases?edition=5&username=solaito</a>
+  </p>
+  <p>A username and edition needs to be provided. Returns how many (bonus) packs a player has bought.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      edition : 5<br />
+      player : solaito<br />
+      count : 0<br />
+      packs : 0<br />
+      bonus_packs : 0
+    </samp>
+  </details>
+  <h4>Player card skins</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/skins?username=clove71"
+      target="_blank">https://api2.splinterlands.com/players/skins?username=clove71</a>
+  </p>
+  <p>A username needs to be provided. Returns details on all card skins bought by a player.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      player : clove71<br />
+      card_detail_id : 11<br />
+      skin : splinterstorm<br />
+      qty : 1<br />
+      active : true
+    </samp>
+  </details>
+  <h4>Player balances</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/balance_history?username=solaito&token_type=DEC"
+      target="_blank">https://api2.splinterlands.com/players/balance_history?username=solaito&token_type=DEC</a>
+  </p>
+  <p>A username and a token needs to be provided. Returns details on all the latest 100 balance changes for that token
+    and player.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      player : solaito<br />
+      token : DEC<br />
+      amount : -295.972<br />
+      balance_start : 14550.982<br />
+      balance_end : 14255.010<br />
+      block_num : 57966605<br />
+      trx_id : eeee0e5b4437b95fdd8a64e9d57193ccb2b69684<br />
+      type : market_fees<br />
+      created_date : 2021-10-03T16:17:39.000Z<br />
+      counterparty : splinterlands
+    </samp>
+  </details>
+  <h4>Player richlist</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/richlist?token_type=DEC"
+      target="_blank">https://api2.splinterlands.com/players/richlist?token_type=DEC</a>
+  </p>
+  <p>A token needs to be provided, options are
+    <code>DEC, CREDITS, ALPHA, BETA, UNTAMED, ORB, DICE, LEGENDARY, GOLD, PLOT, TRACT, REGION, TOTEML, TOTEME, TOTEMR, TOTEMC, MERITS, GLADIUS, BLDSTONE, PWRSTONE, SPS, SPSP, SPSTOTAL and COLLECTION_POWER</code>.
+    Returns a list of the top 200 token holders in the game. Only counts items held in-game.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      total_accounts : 470481<br />
+      total_quantity : 2188622697.481<br />
+      richlist [200]<br />
+      0 {2}<br />
+      player : sl-bsc<br />
+      balance : 458069122.926
+    </samp>
+  </details>
+  <h4>Player richlist ranking</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/players/richlist_ranking?token_type=DEC&player=solaito"
+      target="_blank">https://api2.splinterlands.com/players/richlist_ranking?token_type=DEC&player=solaito</a>
+  </p>
+  <p>A player and token needs to be provided, options are
+    <code>DEC, CREDITS, ALPHA, BETA, UNTAMED, ORB, DICE, LEGENDARY, GOLD, PLOT, TRACT, REGION, TOTEML, TOTEME, TOTEMR, TOTEMC, MERITS, GLADIUS, BLDSTONE, PWRSTONE, SPS, SPSP, SPSTOTAL and COLLECTION_POWER</code>.
+    Returns the token balance and ranking of the player.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      rank : 6159<br />
+      player : solaito6159<br />
+      balance : 15345.01
+    </samp>
+  </details>
+  <h3 id="market">Market</h3>
+  <h4>Purchase settings</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/purchases/settings"
+      target="_blank">https://api2.splinterlands.com/purchases/settings</a>
+  </p>
+  <p>General purchase settings. Contains information about: spellbook price, booster pack price and PayPal account.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      starter_pack_price : 10<br />
+      booster_pack_price : 2<br />
+      market_fee : 500<br />
+      paypal_acct : matt@steemmonsters.com<br />
+      paypal_sandbox : false
+    </samp>
+  </details>
+  <h4>Player transaction history</h4>
+  <p>API endpoint: <a href="https://api.steemmonsters.io/players/history?username=solaito"
+      target="_blank">https://api.steemmonsters.io/players/history?username=solaito</a>
+  </p>
+  <p>A username must be provided. Provides details on all market transactions from one player. Additional parameter can
+    be added such as one to determine from which block to start <code>&from_block=-1</code>, or one to limit the amount
+    of transactions <code>&limit=250</code> or to filter only specific types of transactions
+    <code>&types=pack_purchase,open_pack,open_all,market_purchase,market_sale,gift_cards,gift_packs,combine_cards,combine_all,sell_cards,cancel_sell,card_award,claim_reward,mystery_reward,market_rent,market_renew_rental,market_list,market_cancel_rental</code>
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 14db10fc120214ab37bdea82d8b9c8b6b5fa2874<br />
+      block_id : 03748334aa473a19a7a6e94fc94d82bfd79f8dfa<br />
+      prev_block_id : 037483331e6d2d43a44fb131ec91693deb3f8596<br />
+      type : token_transfer<br />
+      player : solaito<br />
+      affected_player : solaito<br />
+      data :
+      {\"to\":\"eclipsi\",\"qty\":1200,\"token\":\"DEC\",\"type\":\"withdraw\",\"memo\":\"eclipsi\",\"app\":\"splinterlands/0.7.139\",\"n\":\"wPDCiXEc38\"}<br />
+      success : true<br />
+      error : null<br />
+      block_num : 57967412<br />
+      created_date : 2021-10-03T16:58:00.000Z<br />
+      result :
+      {\"success\":true,\"from\":\"solaito\",\"to\":\"eclipsi\",\"amount\":1200,\"token\":\"DEC\",\"from_start_balance\":14255.01,\"from_end_balance\":13055.01,\"to_start_balance\":550.433,\"to_end_balance\":1750.433,\"block_num\":57967412,\"trx_id\":\"14db10fc120214ab37bdea82d8b9c8b6b5fa2874\",\"type\":\"withdraw\",\"created_date\":\"2021-10-03T16:58:00.000Z\"}<br />
+      steem_price : null<br />
+      sbd_price : null
+    </samp>
+  </details>
+  <h4>Market listings</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/market/for_sale"
+      target="_blank">https://api2.splinterlands.com/market/for_sale</a>
+  </p>
+  <p>Lists out every market listing in the game. Contains information about: fee, specific card ID, seller, xp, gold,
+    edition, price, currency and type.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      market_id : 90161a63b14b201b5d870c72a3950830613edd18-3<br />
+      fee_percent : 500<br />
+      uid : G3-86-UMAYAL951S<br />
+      seller : nahya<br />
+      card_detail_id : 86<br />
+      xp : 200<br />
+      gold : true<br />
+      edition : 3<br />
+      last_used_block : 50525935<br />
+      last_used_date : 2021-01-17T18:32:36.000Z<br />
+      last_used_player : buff-buff<br />
+      last_transferred_block : 52682367<br />
+      last_transferred_date : 2021-04-02T19:11:51.000Z<br />
+      buy_price : 65.000<br />
+      currency : USD<br />
+      desc : null<br />
+      type : SELL
+    </samp>
+  </details>
+  <h4>Grouped market listings</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/market/for_sale_grouped"
+      target="_blank">https://api2.splinterlands.com/market/for_sale_grouped</a>
+  </p>
+  <p>Gives market information per card. Cards not listed in order. Contains information about: card detail ID, gold,
+    edition, number of market listings, low price, low price BCX and high price.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      card_detail_id : 96<br />
+      gold : false<br />
+      edition : 3<br />
+      qty : 877<br />
+      low_price : 0.99<br />
+      low_price_bcx : 0.48<br />
+      high_price : 1299<br />
+      level : 1
+    </samp>
+  </details>
+  <h4>Market transaction lookup</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/market/status?id=d8f8593d637ebdd0bca7994dd7e1a15d9f12efa7-0"
+      target="_blank">https://api2.splinterlands.com/market/status?id=d8f8593d637ebdd0bca7994dd7e1a15d9f12efa7-0</a>
+  </p>
+  <p>Market transaction ID must be specified. Give information about one specific transaction. Contains information
+    about: seller, date, number of cards, currency, price, fee, purchaser and payment.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 3078824<br />
+      sell_trx_id : d8f8593d637ebdd0bca7994dd7e1a15d9f12efa7-0<br />
+      seller : kiokizz<br />
+      created_date : 2019-11-05T09:50:40.001Z<br />
+      type : SELL<br />
+      num_cards : 1<br />
+      currency : USD<br />
+      starting_price : null<br />
+      buy_price : 0.020<br />
+      fee_percent : 500<br />
+      expiration_date : null<br />
+      status : 2<br />
+      purchaser : null<br />
+      completed_date : null<br />
+      payment : null<br />
+      transaction_id : null<br />
+      lock_block : null<br />
+      locked_by : null<br />
+      desc : null
+    </samp>
+  </details>
+  <h4>Player market sale history</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/market/history?player=solaito"
+      target="_blank">https://api2.splinterlands.com/market/history?player=solaito</a>
+  </p>
+  <p>A player name must be specified. Retrieves data on the last 200 market transactions done by a player. Contains
+    information about: seller, date, number of cards, currency, price, fee, purchaser, payment, card ID, gold, xp and
+    edition.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 14449412<br />
+      sell_trx_id : a92d5c9cd26ba9c4e00b8013446281148ad0d695-1<br />
+      seller : solaito<br />
+      created_date : 2021-09-29T22:41:06.000Z<br />
+      type : SELL<br />
+      num_cards : 1<br />
+      currency : USD<br />
+      starting_price : null<br />
+      buy_price : 0.119<br />
+      fee_percent : 500<br />
+      expiration_date : null<br />
+      status : 1<br />
+      purchaser : mezzmezz<br />
+      completed_date : 2021-09-29T22:47:45.000Z<br />
+      payment : 14.784 DEC<br />
+      transaction_id : a9508aa07ef3ef6f84ddf0c9fc62e2757bb67019<br />
+      lock_block : null<br />
+      locked_by : null<br />
+      desc : null<br />
+      card_id : C3-337-XQW175XEWG<br />
+      card_detail_id : 337<br />
+      gold : false<br />
+      xp : 1<br />
+      edition : 3
+    </samp>
+  </details>
+  <h4>Market volume statistics</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/market/volume"
+      target="_blank">https://api2.splinterlands.com/market/volume</a>
+  </p>
+  <p>Returns the amount of cards sold and rented.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      transactions : 61816<br />
+      usd_volume : 215618.117<br />
+      active_rentals : 381099<br />
+      daily_rental_amount : 1962961.152
+    </samp>
+  </details>
+  <h4>Card pack purchase lookup</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/purchases/status?id=P-2H7MGOOU74"
+      target="_blank">https://api2.splinterlands.com/purchases/status?id=P-2H7MGOOU74</a>
+  </p>
+  <p>A card pack ID must be specified. Retrieves data on a specific card purchase. Contains information about: player,
+    date, type, quantity, transaction ID, price and currency.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      uid : P-2H7MGOOU74<br />
+      player : sacred-agent<br />
+      created_date : 2018-09-11T18:19:58.801Z<br />
+      completed_date : 2018-09-11T18:24:12.786Z<br />
+      payment : 28.043 STEEM<br />
+      type : booster_pack<br />
+      quantity : 10<br />
+      status : 1<br />
+      transaction_id : 366d91018a989b24e519b97edab9f364e90d7a90<br />
+      bonus_quantity : 0<br />
+      merchant : null<br />
+      amount_usd : 20.00<br />
+      currency : USD<br />
+      edition : null
+    </samp>
+  </details>
+  <h4>Card packs</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/purchases/stats"
+      target="_blank">https://api2.splinterlands.com/purchases/stats</a>
+  </p>
+  <p>Provides details on the availability of card packs.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      packs [5]<br />
+      0 {3}<br />
+      edition : 0<br />
+      qty : 300000<br />
+      available : 0<br />
+      1 {3}<br />
+      edition : 1<br />
+      qty : 900000<br />
+      available : 0<br />
+      2 {3}<br />
+      edition : 2<br />
+      qty : 200017<br />
+      available : -17<br />
+      3 {3}<br />
+      edition : 4<br />
+      qty : 1500000<br />
+      available : 0<br />
+      4 {3}<br />
+      edition : 5<br />
+      qty : 300000<br />
+      available : 0<br />
+      promo_cards : 10000
+    </samp>
+  </details>
+  <h4>Player cards rented out</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/market/active_rentals?owner=solaito"
+      target="_blank">https://api2.splinterlands.com/market/active_rentals?owner=solaito</a>
+  </p>
+  <p>A card owner must be specified. Provides details on all cards that are rented out by this player.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 11932482<br />
+      sell_trx_id : 57aeb0ceed829746662c5b484270d7a65dd848fe-0<br />
+      seller : clove71<br />
+      num_cards : 1<br />
+      buy_price : 75.000<br />
+      fee_percent : 500<br />
+      market_item_id : 11932482<br />
+      rental_tx : a6b53c3f57aa50d83a3d32558e6cab71c188f95f<br />
+      rental_date : 2021-09-02T16:34:57.000Z<br />
+      renter : yugo07<br />
+      status : 1<br />
+      market_account : splinterlands<br />
+      rental_days : 32<br />
+      next_rental_payment : 2021-10-04T16:34:57.000Z<br />
+      payment_currency : DEC<br />
+      payment_amount : 2400.000<br />
+      escrow_currency : DEC<br />
+      escrow_amount : 2400.000<br />
+      paid_amount : 2400.000<br />
+      cancel_tx : null<br />
+      cancel_player : null<br />
+      cancel_date : null<br />
+      card_id : C4-236-J04KGEIX28<br />
+      card_detail_id : 236<br />
+      gold : false<br />
+      xp : 1<br />
+      edition : 4
+    </samp>
+  </details>
+  <h4>Rented cards by player</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/market/active_rentals?renter=solaito"
+      target="_blank">https://api2.splinterlands.com/market/active_rentals?renter=solaito</a>
+  </p>
+  <p>A card renter must be specified. Provides details on all cards that are rented by this player.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 9740913<br />
+      sell_trx_id : a013a286c12e5cb289a06216e44bdd0204026b68-0<br />
+      seller : mchurchm<br />
+      num_cards : 1<br />
+      buy_price : 55.000<br />
+      fee_percent : 500<br />
+      market_item_id : 9740913<br />
+      rental_tx : 2dff4ee61af93f824fba1e50989eb11b82444005<br />
+      rental_date : 2021-08-08T01:48:27.000Z<br />
+      renter : bulldog1205<br />
+      status : 1<br />
+      market_account : splinterlands<br />
+      rental_days : 72<br />
+      next_rental_payment : 2021-10-05T01:48:27.000Z<br />
+      payment_currency : DEC<br />
+      payment_amount : 3960.000<br />
+      escrow_currency : DEC<br />
+      escrow_amount : 3960.000<br />
+      paid_amount : 3190.000<br />
+      cancel_tx : null<br />
+      cancel_player : null<br />
+      cancel_date : null<br />
+      card_id : C2-125-BBJ1KVQW9S<br />
+      card_detail_id : 125<br />
+      gold : false<br />
+      xp : 3000<br />
+      edition : 2
+    </samp>
+  </details>
+  <h3 id="guilds">Guilds</h3>
+  <h4>Guild members</h4>
+  <p>API endpoint: <a
+      href="https://api2.splinterlands.com/guilds/members?guild_id=d14d94bfab9f2532e26c33732cdba602d316f5bf"
+      target="_blank">https://api2.splinterlands.com/guilds/members?guild_id=d14d94bfab9f2532e26c33732cdba602d316f5bf</a>
+  </p>
+  <p>A guild ID must be specified. Lists out details of all guild members of a specific guild. Contains data
+    about: name, rank, date, status, contributions, rating, avatar, title, league and collection power.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      guild_id : d14d94bfab9f2532e26c33732cdba602d316f5bf<br />
+      player : war-catto<br />
+      rank : 1<br />
+      join_date : 2021-03-19T21:05:48.000Z<br />
+      status : active<br />
+      data : {\"contributions\":{\"quest_lodge\":43}}<br />
+      rating : 1300<br />
+      avatar_id : 5<br />
+      title_pre : null<br />
+      title_post : null<br />
+      display_name : null<br />
+      league : 4<br />
+      collection_power : 17425<br />
+      starter_pack_purchase : true
+    </samp>
+  </details>
+  <h4>Guild lookup</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/guilds/find?id=d14d94bfab9f2532e26c33732cdba602d316f5bf"
+      target="_blank">https://api2.splinterlands.com/guilds/find?id=d14d94bfab9f2532e26c33732cdba602d316f5bf</a>
+  </p>
+  <p>A guild ID must be specified. Lists out guild details of a specific guild. Contains data
+    about: name, owner, date, membership type, language, description, motto, level, buildings, brawl status, crowns,
+    brawl level, number of members, rating, rank, brawl_stats and announcements.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : d14d94bfab9f2532e26c33732cdba602d316f5bf<br />
+      name : Cat Gang<br />
+      owner : tryme<br />
+      created_date : 2019-07-29T23:13:12.000Z<br />
+      membership_type : open<br />
+      language : English<br />
+      description : \" We were once seen as gods, when did the humans become so blind? \" - Le Catto<br />
+      motto : Le Cattos<br />
+      level : 6<br />
+      data : {\"crest\":{\"banner\":\"blue\",\"decal\":null}}<br />
+      buildings :
+      {\"guild_hall\":{\"level\":6,\"contributions\":212782},\"quest_lodge\":{\"level\":5,\"contributions\":536},\"arena\":{\"level\":0,\"contrib_dec\":0,\"contrib_crowns\":0},\"barracks\":{\"level\":0,\"contrib_dec\":0,\"contrib_crowns\":0},\"guild_shop\":{\"level\":0,\"contrib_dec\":0,\"contrib_crowns\":0}}<br />
+      brawl_status : 0<br />
+      crowns : 0<br />
+      brawl_level : 0<br />
+      tournament_id : null<br />
+      tournament_status : null<br />
+      tournament_data : null<br />
+      tournament_start_date : null<br />
+      num_members : 21<br />
+      rating : 23994<br />
+      rank : 88<br />
+      brawl_stats {4}<br />
+      announcements [0]
+    </samp>
+  </details>
+  <h4>Guilds list</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/guilds/list"
+      target="_blank">https://api2.splinterlands.com/guilds/list</a>
+  </p>
+  <p>Returns a list of all guilds with details. Contains the same information as with guild lookup.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      array [1046]<br />
+      0 {21}<br />
+      id : 391cc53158d4b06e7e5d8f0dfba614267905b8cf<br />
+      name : Immortal Gods<br />
+      owner : clove71<br />
+      created_date : 2019-07-29T23:37:27.000Z<br />
+      membership_type : request<br />
+      language : English<br />
+      description : Greetings, Mortal.\n\nYou have stumbled upon a Greatness that is beyond what your feeble mind can
+      comprehend. We have risen to a higher plane of Power, and all who face us will soil their undergarments and
+      pathetically
+      plead for mercy.\n\nAre you a God? Gozer's got nothing on us. Zeus is a bratty child in comparison. Cthulhu is our
+      pet.
+      Thor couldn't make the cut, so he had to join the Avengers instead.\n\nMaxed cards and Champion status are
+      requirements
+      for lesser guilds. We expect MORE. We expect your life blood, your first born, and an understanding of game
+      strategy
+      that requires cybernetic brain-enhancement surgery.\n\nWe are the best of the best of the best. To hate us is only
+      natural, for with that hate comes the realization that you are a lesser creature. Like an insect on our
+      windshield.\n\nFor lesser beings that are unhindered by hate, but willing to learn...seek out our support guilds.
+      You
+      are welcome to enlist.\n\nIf you are an enemy, just surrender. It will be less painful for you.\n<br />
+      motto : We Are Better Than You. Sorry. Not Sorry.<br />
+      level : 10<br />
+      data : {\"crest\":{\"banner\":\"black\",\"decal\":\"sword\"}}<br />
+      buildings :
+      {\"guild_hall\":{\"level\":10,\"contributions\":2710000},\"quest_lodge\":{\"level\":9,\"contributions\":1967},\"arena\":{\"level\":5,\"contrib_dec\":460000,\"contrib_crowns\":790},\"barracks\":{\"level\":4,\"contrib_dec\":114000,\"contrib_crowns\":390,\"perks\":[0,0,0,0],\"away_blocked_cards\":[278]},\"guild_shop\":{\"level\":5,\"contrib_dec\":385000,\"contrib_crowns\":790}}<br />
+      brawl_status : 1<br />
+      crowns : 579<br />
+      brawl_level : 4<br />
+      tournament_id : GUILD-BC39-BL34-BRAWL4<br />
+      tournament_status : 0<br />
+      tournament_data :
+      {\"duration_blocks\":57600,\"multiple_rounds\":false,\"cp_min\":0,\"spsp_min\":0,\"group_size\":10,\"create_team_seconds\":168,\"challenge_level\":1,\"guilds\":[\"973d299800db0c66d899328b8ac4ea5d264389f1\",\"391cc53158d4b06e7e5d8f0dfba614267905b8cf\",\"244a02b312201b4a1cca4f8b83eec767cf8af973\",\"c33e99909c5d4c219ee9ba4f62750d3f83a0bac7\",\"4f97fe48fd72ff437e9df6cceacbd732e352d6cf\",\"ac39c0a595dfc5b5ed09323c511040c829048f8b\",\"dcc6e6a78c25dc16db35101d112bdd1c2dd6558e\",\"b97797c12230454566917ae62ced0174586707dc\"]}<br />
+      tournament_start_date : 2021-10-04T05:26:00.000Z<br />
+      num_members : 29<br />
+      rating : 95760<br />
+      rank : 1
+    </samp>
+  </details>
+  <h3 id="tournaments">Tournaments</h3>
+  <h4>Upcoming tournaments</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/tournaments/upcoming"
+      target="_blank">https://api2.splinterlands.com/tournaments/upcoming</a>
+  </p>
+  <p>Lists out details for every upcoming tournament. Contains information about: format, creator, name, description,
+    logo, entrants, fee and prizes.</p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 168c5a844ffa5f030f6b3e2bac1c22c730ff80e1
+      format : swiss<br />
+      sub_format : null<br />
+      created_by : dcityevent<br />
+      name : DCITY TOURNAMENT<br />
+      description : dcity.io<br />
+      start_date : 2021-10-03T10:00:00.000Z<br />
+      status : 0<br />
+      current_round : null<br />
+      sponsor_name : DCITY<br />
+      sponsor_logo_url :
+      https://cdn.discordapp.com/attachments/720294988021497972/720295307140923433/DCITY.IO_LOGO-05.png<br />
+      sponsor_logo_url_med :
+      https://cdn.discordapp.com/attachments/720294988021497972/720295307140923433/DCITY.IO_LOGO-05.png<br />
+      sponsor_logo_url_lg :
+      https://cdn.discordapp.com/attachments/720294988021497972/721840232818802688/dcity_charts_a-03_1.png<br />
+      min_entrants : 4<br />
+      max_entrants : null<br />
+      entry_fee : 1000 ENTRY<br />
+      total_prizes_usd : 141<br />
+      data {14}<br />
+      password_pub_key : null<br />
+      entrants : 32<br />
+      cur_player_entered : 0
+    </samp>
+  </details>
+  <h4>Tournaments in progress</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/tournaments/in_progress"
+      target="_blank">https://api2.splinterlands.com/tournaments/in_progress</a>
+  </p>
+  <p>Lists out details for tournaments currently being played. Contains the same information as upcoming tournaments.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : f062e07a6e8a55aa536c1f28ac878b45498fee00<br />
+      format : swiss<br />
+      sub_format : null<br />
+      created_by : splinterlands<br />
+      name : UNTAMED SHINY PATH<br />
+      description : There are but few brave warriors as revered and as exalted as these who gather here. Stand,
+      applause,
+      cheer, and show them the respect they deserve. The gladiators are heroes, household names, and worthy of love
+      and
+      praise. They give blood and tears for glory and riches. Watch in slack jawed awe as they amaze us all!\n\nNew to
+      Splinterlands? Join us in [Discord](https://discord.splinterlands.com)<br />
+      start_date : 2021-10-03T07:00:00.000Z<br />
+      status : 1<br />
+      current_round : 1<br />
+      sponsor_name : Splinterlands<br />
+      sponsor_logo_url : https://i.imgur.com/Ld4Sc0n.png<br />
+      sponsor_logo_url_med : https://i.imgur.com/Ld4Sc0n.png<br />
+      sponsor_logo_url_lg : https://i.imgur.com/bQLUL6c.png<br />
+      min_entrants : 4<br />
+      max_entrants : null<br />
+      entry_fee : 62.5 SPS<br />
+      total_prizes_usd : 3141
+    </samp>
+  </details>
+  <h4>Completed tournaments</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/tournaments/completed"
+      target="_blank">https://api2.splinterlands.com/tournaments/completed</a>
+  </p>
+  <p>Lists out details for the latest 200 finished tournaments. Contains the same information as upcoming tournaments.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 34e9ad7e2c6ec5d878f30a0dd351c86c67c708e8<br />
+      format : swiss<br />
+      sub_format : null<br />
+      created_by : splinterlands<br />
+      name : BRONZE A-GAME<br />
+      description : Well, have to hand it you. If you're in this you've probably been supporting the game for a number
+      of
+      years. These tournaments are a way to support you back and show our appreciation to the OGs that have been with
+      us
+      since
+      the beginning. Couldn't be doing what we're doing without the Alpha crew. Thanks for sticking with us and
+      hopefully
+      you're enjoying the ride!\n\nNew to Splinterlands? Join us in [Discord](https://discord.splinterlands.com)<br />
+      start_date : 2021-10-01T06:00:00.000Z<br />
+      status : 2<br />
+      current_round : 2<br />
+      sponsor_name : Splinterlands<br />
+      sponsor_logo_url : https://i.imgur.com/XPDGgQS.png<br />
+      sponsor_logo_url_med : https://i.imgur.com/XPDGgQS.png<br />
+      sponsor_logo_url_lg : https://i.imgur.com/bQLUL6c.png<br />
+      min_entrants : 4<br />
+      max_entrants : null<br />
+      entry_fee : 2.5 SPS<br />
+      total_prizes_usd : 155<br />
+      data {14}<br />
+      password_pub_key : null<br />
+      entrants : 48<br />
+      cur_player_entered : 0
+    </samp>
+  </details>
+  <h4>Tournament lookup</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/tournaments/find?id=545a2a4162796d720ed26e9951c806dab673d495"
+      target="_blank">https://api2.splinterlands.com/tournaments/find?id=545a2a4162796d720ed26e9951c806dab673d495</a>
+  </p>
+  <p>A tournament ID must be specified. Lists out details for one specific tournament. Contains information about:
+    creator, date, name, description, rounds, logo, entrants, fee, settings, players and rounds.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      id : 545a2a4162796d720ed26e9951c806dab673d495<br />
+      created_by : steemmonsters<br />
+      created_date : 2019-04-17T13:30:03.000Z<br />
+      created_block : 32124192<br />
+      name : All the Pointy Things<br />
+      description : I've never seen such deadliness in one place before. This is insane. Those who have gathered here
+      are some
+      of the most lethal creatures anywhere in the Splinterlands. If you can make it you're nearing the elite. This is
+      a
+      challenge and the big question is: \"\"are you up to it?\"\" Best of luck and we'll cheer you on while we're
+      watching
+      from the sideline!\n\nNew to Steem Monsters? Join us in [Discord](https://discord.gg/CAFJRjY)<br />
+      start_date : 2019-04-27T14:00:00.000Z<br />
+      status : 2<br />
+      current_round : 7<br />
+      sponsor_name : Splinterlands<br />
+      sponsor_logo_url : https://cdn.steemitimages.com/DQmYdptmjZQK3F844ELgPW6Qmn3PRhqs5VUuUCwze7Ybnot/image.png<br />
+      min_entrants : 4<br />
+      max_entrants : null<br />
+      entry_fee : 5 STEEM<br />
+      total_prizes_usd : 128<br />
+      data {5}<br />
+      sponsor_logo_url_med :
+      https://cdn.steemitimages.com/DQmYdptmjZQK3F844ELgPW6Qmn3PRhqs5VUuUCwze7Ybnot/image.png<br />
+      sponsor_logo_url_lg :
+      https://steemitimages.com/p/5CEvyaWxjaErwvdsf9tdDwJbEQG9yR5R8icPd2xggVZm9dQcFnCkdx9hJAkzKwb5aH7s3Mo2AJDdzf9pV?format=match&mode=fit&width=640<br />
+      payment : null<br />
+      sponsor_url : https://steemmonsters.com<br />
+      checkin_msg_sent : true<br />
+      format : single_elimination<br />
+      payment_data :
+      [{\"currency\":\"STEEM\",\"amount\":0,\"paid\":314.829,\"trx_id\":\"83fc23dd64c90c0a18f8acb10f2fc42e4856a861\"}]<br />
+      password_pub_key : null<br />
+      sub_format : null<br />
+      players [0]
+      (empty array)<br />
+      rounds [7]<br />
+      num_players : 0<br />
+      total_rounds : 0<br />
+      qualifiers : 0
+    </samp>
+  </details>
+  <h4>Tournament prizes</h4>
+  <p>API endpoint: <a href="https://api2.splinterlands.com/tournaments/prizes"
+      target="_blank">https://api2.splinterlands.com/tournaments/prizes</a>
+  </p>
+  <p>Returns total tournament prizes awarded and upcoming.
+  </p>
+  <details>
+    <summary>Example response</summary>
+    <samp>
+      awarded : 822329<br />
+      upcoming : 516944
+    </samp>
+  </details>
+
+  <h2 id="donate">Support</h2>
+  <p>Help me keep this information up to date and consider donating if it has helped you. You can send DEC, SPS, SPT
+    or cards to @solaito in game or use the buttons on the bottom to securely donate through Hive Keychain.</p>
+  <h2>Credits</h2>
+  <p>The documentation provided by <a href="https://github.com/kiokizz/Splinterlands-API" target="_blank">Kiokizz on
+      Github</a> served as the basis for this documentation.</p><br /><br /><br /><br />
+
+  <div id="bottom">Donate to @solaito or use Hive Keychain:<br /><button id="donate50">50 DEC</button><button
+      id="donate100">100
+      DEC</button><button id="donate500">500 DEC</button></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="keychainpurchase.js"></script>
+</body>
+
+</html>
