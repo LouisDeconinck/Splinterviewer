@@ -2,15 +2,88 @@
 <html>
 
 <head>
- <title>Splinterviewer</title>
- <script src="javascript.js"></script>
- <link rel="stylesheet" href="stylesheet.css">
+  <title>Splinterviewer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+  <link rel="stylesheet" href="stylesheet.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/jpg" href="iconmonstr-eye-6.svg" />
 </head>
 
 <body>
- <h1>Splinterviewer</h1>
- <div id="message"></div>
- <div id="team"></div>
+  <h1>Splinterviewer</h1>
+  <img src="venari.png" alt="Venari Wavesmith" />
+  <p>Increase your Splinterlands win rate drastically by looking at the cards your opponent has used in his past
+    battles. This allows you to pick a better counter.</p>
+  <p>When using this tool you will get the following information about your opponent: what quest he is completing, his
+    card collection, what cards he used in previous battles and in some cases what cards he
+    has picked against you.</p>
+  <h2>Features</h2>
+  <ul>
+    <li>See what quest your opponent is working on.</li>
+    <li>See all playable cards for your opponent.</li>
+    <li>See what cards your opponent used in his latest 50 battles.</li>
+    <li>Cards shown will show the right level and gold status.</li>
+    <li>Matches shown will display mana cap, rulesets, match type, winner and a replay link. </li>
+    <li>See player statistics of your opponent: win rate, max rating, guild, collection power, ...</li>
+  </ul>
+  <h2 id="pricing">Pricing</h2>
+  <p>Decide how long you want to use the tool, click "Buy" and securely confirm the transaction using <a
+      href="https://hive-keychain.com/" target="_blank">Hive Keychain</a>.</p>
+  <table>
+    <tr>
+      <td>1 day</td>
+      <td>7 days</td>
+      <td>30 days</td>
+    </tr>
+    <tr>
+      <td>95 DEC</td>
+      <td>495 DEC<br />(70 DEC/day)</td>
+      <td>995 DEC<br />(33 DEC/day)</td>
+    </tr>
+    <tr>
+      <td><button id="send_1">Buy</button></td>
+      <td><button id="send_7">Buy</button></td>
+      <td><button id="send_30">Buy</button></td>
+    </tr>
+  </table>
+
+  <h2>Tool</h2>
+  <form action="battle.php" method="get">
+    <input type="text" name="user" placeholder="Splinterlands username" required>
+    <input type="submit" value="Battle">
+  </form>
+  <h2>FAQ</h2>
+  <h3>How does the tool work?</h3>
+  <p>It automatically finds your opponent and shows the cards he's used in his last 20 battles, as well as a lot of
+    other usefull information.</p>
+  <h3>What does the tool look like?</h3>
+  <img src="sv-screenshot.png" alt="Splinterviewer screenshot" />
+  <p>Video demonstration of the new tool: <a href="https://www.youtube.com/watch?v=1O8qHXyYja4"
+      target="_blank">https://www.youtube.com/watch?v=1O8qHXyYja4</a>.</p>
+  <h3>How do you know what account to give access to?</h3>
+  <p>The Hive username that makes the transaction, will be the account that receives access to the tool.</p>
+  <h3>When do I gain access to the tool?</h3>
+  <p>After your purchase, you can immediately start using the tool.</p>
+  <h3>Can I use this on multiple accounts?</h3>
+  <p>A purchase is linked to your account username, so will only give access to one account. If you have multiple
+    accounts, we can provide bulk discounts. Contact solaito#2798 on Discord for more information.</p>
+  <h3>Can I use other payment methods?</h3>
+  <p>Yes, contact solaito#2798 on Discord for more options. We also accept SPS, SPT, Splinterlands cards and other
+    payment options.</p>
+  <h3>Does this always work?</h3>
+  <p>Yes, this does always work, even in tournaments. The option to see what cards your opponent has picked only works
+    in around 10% of all cases. In tournaments this option is automatically disabled, but all other functionalities
+    remain the same.</p>
+  <h3>How do I get started?</h3>
+  <p>Purchase a license <a href="#pricing">here</a>.
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="keychainpurchase.js"></script>
+
 </body>
 
 </html>
